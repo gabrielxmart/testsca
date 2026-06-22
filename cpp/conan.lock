@@ -1,0 +1,34 @@
+{
+  "graph_lock": {
+    "nodes": {
+      "0": {
+        "ref": "consumer/1.0.0@None/None",
+        "options": "shared=False",
+        "requires": ["1", "2"],
+        "path": "conanfile.txt",
+        "context": "host"
+      },
+      "1": {
+        "ref": "openssl/3.0.0#83c0d74ef30a3d1a4df18f5697ce33c5",
+        "package_id": "dfbe50feef2f68a0da0182e2e7f9f23b2f8c4a1b",
+        "prev": "7a3b1c5d9f2e4a6b8c0d7e9f1a3b5c7d",
+        "requires": ["2"],
+        "options": "no_md2=True:shared=False",
+        "pref_outdated": false,
+        "context": "host"
+      },
+      "2": {
+        "ref": "zlib/1.2.11#ee4ea44ace0e6e06e1e8f36f3e1a89d3",
+        "package_id": "c18d04e9c70d0c43b2de5e33494bef78e83d26de",
+        "prev": "9f1b3e5d7c2a4f6b8e0c9d1a3b5f7e2d",
+        "options": "shared=False:minizip=False:fPIC=True",
+        "pref_outdated": false,
+        "context": "host"
+      }
+    },
+    "revisions_enabled": true
+  },
+  "version": "0.4",
+  "profile_host": "[settings]\nos=Linux\narch=x86_64\ncompiler=gcc\ncompiler.version=11\ncompiler.libcxx=libstdc++11\nbuild_type=Release\n",
+  "profile_build": null
+}

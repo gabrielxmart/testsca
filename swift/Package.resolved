@@ -1,0 +1,51 @@
+{
+  "originHash": "f3a9b2e1d4c7f8a6b3e0d9c2f5a8b1e4d7c0f3a9b2e1d4c7f8a6b3e0d9c2f5",
+  "pins": [
+    {
+      "identity": "swift-crypto",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/apple/swift-crypto",
+      "state": {
+        "revision": "5c4b7f2a9d3e8b1c6a4f7d2e9b3c8a5f6d2e1c4b",
+        "version": "2.1.1"
+      }
+    },
+    {
+      "identity": "swift-nio",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/apple/swift-nio",
+      "state": {
+        "revision": "9e2f1d4c7b0a3e6f9c2b5a8d1e4f7c0b3a6d9e2f",
+        "version": "2.39.0"
+      }
+    },
+    {
+      "identity": "swift-nio-http2",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/apple/swift-nio-http2",
+      "state": {
+        "revision": "3f7a2e9d1c6b4f8a0e3d7c1b5f9a2e6d4c8b3f7a",
+        "version": "1.19.1"
+      }
+    },
+    {
+      "identity": "alamofire",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/Alamofire/Alamofire",
+      "state": {
+        "revision": "b1e4d7c0f3a9b2e5d8c1f4a7b0e3d6c9f2a5b8e1",
+        "version": "5.6.4"
+      }
+    },
+    {
+      "identity": "kingfisher",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/onevcat/Kingfisher",
+      "state": {
+        "revision": "7c0b3e6d9a2f5c8b1e4d7a0c3f6b9e2d5a8c1f4b",
+        "version": "7.6.2"
+      }
+    }
+  ],
+  "version": 2
+}

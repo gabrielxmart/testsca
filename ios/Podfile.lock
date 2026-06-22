@@ -1,0 +1,31 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1)
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - Alamofire (5.6.1)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - SnapKit (5.6.0)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.2)
+  - Alamofire (~> 5.6)
+  - SDWebImage (~> 5.11)
+  - SnapKit (~> 5.6)
+
+SPEC CHECKSUMS:
+  AFNetworking: 3b59e0c8f91d4a2b7e6f9c3a5d8b1e4f7c2a9b6e
+  Alamofire: 9f2d5c8a1b4e7f0c3d6a9b2e5f8c1d4a7b0e3f6
+  SDWebImage: 4a7b0e3f6c9d2a5b8e1f4c7a0b3d6e9f2c5a8b1
+  SnapKit: 6c9d2a5b8e1f4c7a0b3d6e9f2c5a8b1e4f7c0d3
+
+PODFILE CHECKSUM: 8b1e4f7c2a9b6e3d0a5f8c1d4a7b0e3f6c9d2a5b
+
+COCOAPODS: 1.11.3
