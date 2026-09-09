@@ -31,7 +31,6 @@ jobs:
           stage: 'build'
           scan-targets: '/tmp/publish/**/*.dll'
           enable-reachability-dotnet: true
-          reachability-dotnet-entrypoint-strategy: 'PUBLIC_CONCRETE'
 
       # 3. Limpa o /tmp (roda sempre, mesmo se o scan reprovar)
       - name: Cleanup Temp Files
