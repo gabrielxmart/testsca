@@ -22,14 +22,16 @@ jobs:
       - name: Dotnet Publish
         run: dotnet publish -c Release -o ./publish
 
-      # 2. Avaliação no Nexus IQ com Reachability habilitado
+# 2. Avaliação no Nexus IQ com Reachability habilitado
       - name: Sonatype Lifecycle Evaluation
         uses: sonatype/actions/evaluate@v1
         with:
           iq-server-url: ${{ secrets.IQ_SERVER_URL }}
-          iq-username: ${{ secrets.IQ_USERNAME }}
-          iq-password: ${{ secrets.IQ_PASSWORD }}
-          iq-application-id: 'test-reachability-dotnet'
-          iq-stage: 'build'
+          username: ${{ secrets.IQ_USERNAME }}
+          password: ${{ secrets.IQ_PASSWORD }}
+          application-id: ${{ github.event.repository.name }}   # Pega o nome do repo automaticamente
+          stage: 'build'
           scan-targets: './publish/**/*.dll'
           enable-reachability-dotnet: true
+          reachability-dotnet-entrypoint-strategy: 'PUBLIC_CONCRETE'
+          reachability-dotnet-namespaces: 'TestReachability.App'
