@@ -1,0 +1,35 @@
+name: Sonatype .NET Reachability Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-evaluate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      # 1. Compila e consolida todas as dependências e arquivos .pdb
+      - name: Dotnet Publish
+        run: dotnet publish -c Release -o ./publish
+
+      # 2. Avaliação no Nexus IQ com Reachability habilitado
+      - name: Sonatype Lifecycle Evaluation
+        uses: sonatype/actions/evaluate@v1
+        with:
+          iq-server-url: ${{ secrets.IQ_SERVER_URL }}
+          iq-username: ${{ secrets.IQ_USERNAME }}
+          iq-password: ${{ secrets.IQ_PASSWORD }}
+          iq-application-id: 'test-reachability-dotnet'
+          iq-stage: 'build'
+          scan-targets: './publish/**/*.dll'
+          enable-reachability-dotnet: true
