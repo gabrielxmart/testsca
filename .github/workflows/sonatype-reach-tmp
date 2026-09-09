@@ -1,0 +1,44 @@
+name: Docker Build & Sonatype Reachability
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 1. Compila no Docker e extrai os binários (.dll e .pdb) para o /tmp
+      - name: Build and Extract DLLs
+        run: |
+          docker build --target build -t app-temp-build .
+          id=$(docker create app-temp-build)
+          docker cp $id:/app/publish /tmp/publish
+          docker rm -v $id
+
+      # 2. Sonatype avalia as DLLs extraídas no /tmp
+      - name: Sonatype Lifecycle Evaluation
+        uses: sonatype/actions/evaluate@v1
+        with:
+          iq-server-url: ${{ secrets.IQ_SERVER_URL }}
+          username: ${{ secrets.IQ_USERNAME }}
+          password: ${{ secrets.IQ_PASSWORD }}
+          application-id: 'minha-aplicacao'
+          stage: 'build'
+          scan-targets: '/tmp/publish/**/*.dll'
+          enable-reachability-dotnet: true
+          reachability-dotnet-entrypoint-strategy: 'PUBLIC_CONCRETE'
+
+      # 3. Limpa o /tmp (roda sempre, mesmo se o scan reprovar)
+      - name: Cleanup Temp Files
+        if: always()
+        run: rm -rf /tmp/publish
+
+      # 4. Só executa se o Sonatype não bloquear o build
+      - name: Build Final Production Image
+        run: |
+          docker build -t minha-imagem:latest .
