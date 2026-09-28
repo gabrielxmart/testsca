@@ -1,0 +1,51 @@
+name: Sonatype .NET IQ Policy Gate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-evaluate:
+    name: Build and evaluate with Sonatype IQ
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore ./TestReachability.App.csproj
+
+      - name: Publish application
+        run: >-
+          dotnet publish ./TestReachability.App.csproj
+          --configuration Release
+          --no-restore
+          --output ./publish
+
+      - name: Sonatype Lifecycle policy evaluation
+        id: iq-evaluation
+        uses: sonatype/actions/evaluate@v1
+        with:
+          iq-server-url: ${{ secrets.IQ_SERVER_URL }}
+          username: ${{ secrets.IQ_USERNAME }}
+          password: ${{ secrets.IQ_PASSWORD }}
+          application-id: ${{ github.event.repository.name }}
+          stage: build
+          scan-targets: "TestReachability.App.csproj obj/project.assets.json publish"
+          fail-on-policy-warnings: true
+          result-file: sonatype-iq-result.json
