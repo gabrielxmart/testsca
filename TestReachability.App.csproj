@@ -1,15 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>TestReachability.App</RootNamespace>
   </PropertyGroup>
-
+  <!--
+    LABORATORIO DE TESTE: estas versoes foram fixadas intencionalmente em
+    releases antigas para validar o bloqueio de politicas no Sonatype IQ.
+    Nao utilize este projeto ou estas dependencias em producao.
+  -->
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />
+    <PackageReference Include="SharpZipLib" Version="1.3.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="4.7.0" />
+    <PackageReference Include="log4net" Version="2.0.13" />
   </ItemGroup>
-
 </Project>
